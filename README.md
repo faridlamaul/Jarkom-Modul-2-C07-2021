@@ -152,10 +152,24 @@ Setelah itu terdapat subdomain mecha.franky.yyy.com dengan alias www.mecha.frank
 ## Soal 7
 
 ```
-
+Untuk memperlancar komunikasi Luffy dan rekannya, dibuatkan subdomain melalui Water7 dengan nama `general.mecha.franky.yyy.com` dengan alias `www.general.mecha.franky.yyy.com` yang mengarah ke Skypie.
 ```
 
 ### Jawaban
+
+**Water7**
+
+-   Edit file `/etc/bind/sunnygo/mecha.franky.c07.com` seperti pada gambar berikut:
+
+    ![7.1](images/7.1.png)
+
+-   Restart bind9 dengan perintah `service bind9 restart`
+
+**Loguetown**
+
+-   Lakukan ping domain `general.mecha.franky.c07.com` dan alias `www.general.mecha.franky.c07.com`
+
+    ![7.2](images/7.2.png)
 
 ## Soal 8
 
@@ -176,18 +190,89 @@ Setelah itu terdapat subdomain mecha.franky.yyy.com dengan alias www.mecha.frank
 ## Soal 10
 
 ```
-
+Setelah itu, pada subdomain `www.super.franky.yyy.com`, Luffy membutuhkan penyimpanan aset yang memiliki DocumentRoot pada `/var/www/super.franky.yyy.com`.
 ```
 
 ### Jawaban
+
+-   Ketikkan `cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/super.franky.c07.com.conf` untuk meng-copy isi dari `000-default.conf` kedalam `super.franky.c07.com.conf`
+
+-   Edit file `super.franky.c07.com.conf` seperti pada gambar berikut :
+
+    ![10.1](images/10.1.png)
+
+-   Aktifkan konfigurasi `super.franky.c07.com`.
+
+    ```
+    a2ensite super.franky.c07.com
+    ```
+
+-   Restart apache.
+
+    ```
+    service apache2 restart
+    ```
+
+-   Download file zip yang sudah disediakan pada soal dengan menggunakan command
+
+    ```
+    wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/super.franky.zip
+    ```
+
+-   Kemudian unzip file yang telah didownload dan letakkan pada directory `/var/www/`. Setelah itu rename file menjadi `super.franky.c07.com` dengan command berikut :
+
+    ```
+    unzip super.franky.zip -d /var/www/
+    mv /var/www/super.franky /var/www/super.franky.c07.com
+    ```
+
+-   Kemudian buka direktory tempat kita meletakkan file yang telah di-unzip, maka akan muncul seperti pada gambar berikut :
+
+    ![10.2](images/10.2.png)
+
+**Loguetown**
+
+-   Buka `super.franky.c07.com` dengan command berikut :
+
+    ```
+    lynx super.franky.c07.com
+    ```
+
+-   Setelah itu maka akan muncul seperti pada gambar berikut :
+
+    ![10.3](images/10.3.png)
 
 ## Soal 11
 
 ```
-
+Akan tetapi, pada folder `/public`, Luffy ingin hanya dapat melakukan directory listing saja.
 ```
 
 ### Jawaban
+
+**Skypie**
+
+-   Edit file `/etc/apache2/sites-available/super.franky.c07.com.conf` seperti pada gambar berikut :
+
+    ![10.4](images/10.4.png)
+
+-   Restart apache.
+
+    ```
+    service apache2 restart
+    ```
+
+**Loguetown**
+
+-   Buka `super.franky.c07.com/public` dengan command berikut :
+
+    ```
+    lynx super.franky.c07.com/public
+    ```
+
+-   Setelah itu maka akan muncul seperti pada gambar berikut :
+
+    ![10.5](images/10.5.png)
 
 ## Soal 12
 
