@@ -6,7 +6,7 @@ Kelompok C07
 | :------------: | :-------------------------------------: |
 | 05111940000046 |       Titian Pamungkas Anjasmara        |
 | 05111940000134 |           Ahmad Lamaul Farid            |
-| 05111840000150 | Jonathan Leonardo Hasiholan Simanjuntak |
+| 05111940000150 | Jonathan Leonardo Hasiholan Simanjuntak |
 
 ## Soal 1
 
