@@ -81,15 +81,25 @@ Luffy ingin menghubungi Franky yang berada di EniesLobby dengan denden mushi. Ka
 - Jalankan ping `franky.c07.com`, akan berjalan seperti berikut.
 ![5](https://user-images.githubusercontent.com/77373958/139462043-fc0b9366-da7c-4203-b90f-52fbea5dea08.PNG)
 
-### Jawaban
-
 ## Soal 3
 
 ```
-
+Setelah itu buat subdomain super.franky.yyy.com dengan alias www.super.franky.yyy.com yang diatur DNS nya di EniesLobby dan mengarah ke Skypie
 ```
 
 ### Jawaban
+
+**Enies Lobby**
+
+- Tambahkan isi file pada `/etc/bind/kaizoku/franky.c07.com` menjadi berikut.
+![7](https://user-images.githubusercontent.com/77373958/139463353-6468b8ac-b11d-4531-8dbe-e3f196b9fbf3.PNG)
+
+- Restart bin9
+
+**Logue Town**
+
+- Lakukan ping `super.franky.c07.com`, akan tampak seperti berikut.
+![8](https://user-images.githubusercontent.com/77373958/139463373-1dfb057a-a6ac-4a36-9952-5ce5efdc00bd.PNG)
 
 ## Soal 4
 
@@ -123,10 +133,33 @@ Buat juga reverse domain untuk domain utama.
 ## Soal 5
 
 ```
-
+Supaya tetap bisa menghubungi Franky jika server EniesLobby rusak, maka buat Water7 sebagai DNS Slave untuk domain utama
 ```
 
 ### Jawaban
+
+**Water7**
+
+- Install bind9 dengan menggunakan command `apt-get update` dan `apt-get install bind9 -y`
+- Edit file `/etc/bind/named.conf.local` menjadi berikut
+![11](https://user-images.githubusercontent.com/77373958/139464620-f4a78099-307b-4ce1-8e62-7895e9a1edf2.PNG)
+
+- Restart bind
+
+**Enies Lobby**
+
+- Edit file `/etc/bind/named.conf.local` menjadi berikut
+![9](https://user-images.githubusercontent.com/77373958/139464674-145103e0-f12d-4859-85cd-541ce45612da.PNG)
+
+- Restart bind
+- Untuk menguji apakah sudah benar atau tidak, server pada enies lobby perlu dimatikan dengan perintah `service bind9 stop`
+![13](https://user-images.githubusercontent.com/77373958/139464911-450ee039-0ea4-4e3d-9d0e-f088ed5cb02a.PNG)
+
+**Loguetown**
+
+- Tambahkan isi file `/etc/resolv.conf` dengan IP water7
+- Lakukan `ping franky.c07.com`
+![12](https://user-images.githubusercontent.com/77373958/139464943-0ea438a8-998a-438e-b926-b45eac17d3c1.PNG)
 
 ## Soal 6
 
@@ -632,15 +665,49 @@ dengan autentikasi username luffy dan password onepiece dan file di /var/www/gen
 ## Soal 16
 
 ```
-
+Dan setiap kali mengakses IP Skypie akan dialihkan secara otomatis ke www.franky.yyy.com
 ```
 
 ### Jawaban
+
+**Skypie**
+
+- Ubah isi file `/etc/apache2/sites-available/000-default.conf` menjadi berikut
+![14](https://user-images.githubusercontent.com/77373958/139465499-3359ef40-afd4-4652-b810-cb2c5c1ee6af.PNG)
+
+- Restart apache dengan `service apache2 restart`
+
+**Loguetown**
+
+- Masukkan command `lynx 192.187.2.4` akan dialihkan ke franky.c07.com
+![15](https://user-images.githubusercontent.com/77373958/139465511-e4175ecd-d12a-4539-85f7-81a151c518f6.PNG)
 
 ## Soal 17
 
 ```
-
+Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melalui website www.super.franky.yyy.com, dan dikarenakan pengunjung web server pasti akan bingung dengan randomnya images yang ada, maka Franky juga meminta untuk mengganti request gambar yang memiliki substring “franky” akan diarahkan menuju franky.png
 ```
 
 ### Jawaban
+
+**Skypie**
+
+- Jalankan command `a2enmod rewrite` agar bisa rewrite modul
+- Restart apache
+- Ubah isi file `/var/www/super.franky.c07.com/.htaccess` menjadi berikut
+![16](https://user-images.githubusercontent.com/77373958/139466252-a2501e21-36fc-47c1-a575-0ca1066512fb.PNG)
+
+- Ubah isi file `/etc/apache2/sites-available/super.franky.c07.com.conf` menjadi berikut
+![17](https://user-images.githubusercontent.com/77373958/139466270-2388a82d-3051-43cc-ad2b-a70d7cdd33cd.PNG)
+
+- Restart apache
+
+**Loguetown**
+
+- Jalankan command `lynx super.franky.c07.com/public/images/franky.png` akan tampil sebagai berikut
+![18](https://user-images.githubusercontent.com/77373958/139466303-acb91b22-3f64-401c-833b-3d2aab0f48a5.PNG)
+
+- Jalankan command `lynx super.franky.c07.com/public/images/frankyonepiece.png ` akan tampil sebagai berikut
+![20](https://user-images.githubusercontent.com/77373958/139466318-be0920a8-c07f-4cbe-b727-da1de0ecf0b4.PNG)
+![19](https://user-images.githubusercontent.com/77373958/139466325-2607b711-3955-4a55-bfe3-27d1674c7042.PNG)
+
