@@ -80,24 +80,24 @@ Buat juga reverse domain untuk domain utama.
 
 **EniesLobby**
 
--   Edit file `/etc/bind/named.conf.local` seperti pada gambar berikut:
+- Edit file `/etc/bind/named.conf.local` seperti pada gambar berikut:
 
-    ![4.1](images/4.1.png)
+  ![4.1](images/4.1.png)
 
--   Ketikkan `cp /etc/bind/db.local /etc/bind/kaizoku/2.187.192.in-addr.arpa` untuk meng-copy isi dari `db.local` kedalam `2.187.192.in-addr.arpa`
+- Ketikkan `cp /etc/bind/db.local /etc/bind/kaizoku/2.187.192.in-addr.arpa` untuk meng-copy isi dari `db.local` kedalam `2.187.192.in-addr.arpa`
 
--   Edit file `/etc/bind/kaizoku/2.187.192.in-addr.arpa` seperti pada gambar berikut:
+- Edit file `/etc/bind/kaizoku/2.187.192.in-addr.arpa` seperti pada gambar berikut:
 
-    ![4.2](images/4.2.png)
+  ![4.2](images/4.2.png)
 
--   Restart bind9 dengan perintah `service bind9 restart`
+- Restart bind9 dengan perintah `service bind9 restart`
 
 **Loguetown**
 
--   Install `dnsutils` terlebih dahulu dengan command `apt-get install dnsutils -y`
--   Ketikkan `host -t PTR 192.187.2.2` untuk mengecek konfigurasi
+- Install `dnsutils` terlebih dahulu dengan command `apt-get install dnsutils -y`
+- Ketikkan `host -t PTR 192.187.2.2` untuk mengecek konfigurasi
 
-    ![4.3](images/4.3.png)
+  ![4.3](images/4.3.png)
 
 ## Soal 5
 
@@ -117,45 +117,45 @@ Setelah itu terdapat subdomain mecha.franky.yyy.com dengan alias www.mecha.frank
 
 **EniesLobby**
 
--   Edit file `/etc/bind/kaizoku/franky.c07.com` seperti pada gambar berikut:
+- Edit file `/etc/bind/kaizoku/franky.c07.com` seperti pada gambar berikut:
 
-    ![6.1](images/6.1.png)
+  ![6.1](images/6.1.png)
 
--   Edit file `/etc/bind/named.conf.options` seperti pada gambar berikut:
+- Edit file `/etc/bind/named.conf.options` seperti pada gambar berikut:
 
-    ![6.2](images/6.2.png)
+  ![6.2](images/6.2.png)
 
--   Edit file `/etc/bind/named.conf.local` seperti pada gambar berikut:
+- Edit file `/etc/bind/named.conf.local` seperti pada gambar berikut:
 
-    ![6.3](images/6.3.png)
+  ![6.3](images/6.3.png)
 
--   Restart bind9 dengan perintah `service bind9 restart`
+- Restart bind9 dengan perintah `service bind9 restart`
 
 **Water7**
 
--   Edit file `/etc/bind/named.conf.options` seperti pada gambar berikut:
+- Edit file `/etc/bind/named.conf.options` seperti pada gambar berikut:
 
-    ![6.4](images/6.4.png)
+  ![6.4](images/6.4.png)
 
--   Edit file `/etc/bind/named.conf.local` seperti pada gambar berikut:
+- Edit file `/etc/bind/named.conf.local` seperti pada gambar berikut:
 
-    ![6.5](images/6.5.png)
+  ![6.5](images/6.5.png)
 
--   Ketikkan `mkdir /etc/bind/sunnygo` untuk membuat folder `sunnygo` di dalam `/etc/bind`
+- Ketikkan `mkdir /etc/bind/sunnygo` untuk membuat folder `sunnygo` di dalam `/etc/bind`
 
--   Ketikkan `cp /etc/bind/db.local /etc/bind/sunnygo/mecha.franky.c07.com` untuk meng-copy isi dari `db.local` kedalam `mecha.franky.c07.com`
+- Ketikkan `cp /etc/bind/db.local /etc/bind/sunnygo/mecha.franky.c07.com` untuk meng-copy isi dari `db.local` kedalam `mecha.franky.c07.com`
 
--   Edit file `/etc/bind/sunnygo/mecha.franky.c07.com` seperti pada gambar berikut:
+- Edit file `/etc/bind/sunnygo/mecha.franky.c07.com` seperti pada gambar berikut:
 
-    ![6.6](images/6.6.png)
+  ![6.6](images/6.6.png)
 
--   Restart bind9 dengan perintah `service bind9 restart`
+- Restart bind9 dengan perintah `service bind9 restart`
 
 **Loguetown**
 
--   Lakukan ping domain `mecha.franky.c07.com` dan alias `www.mecha.franky.c07.com`
+- Lakukan ping domain `mecha.franky.c07.com` dan alias `www.mecha.franky.c07.com`
 
-    ![6.7](images/6.7.png)
+  ![6.7](images/6.7.png)
 
 ## Soal 7
 
@@ -167,25 +167,107 @@ Untuk memperlancar komunikasi Luffy dan rekannya, dibuatkan subdomain melalui Wa
 
 **Water7**
 
--   Edit file `/etc/bind/sunnygo/mecha.franky.c07.com` seperti pada gambar berikut:
+- Edit file `/etc/bind/sunnygo/mecha.franky.c07.com` seperti pada gambar berikut:
 
-    ![7.1](images/7.1.png)
+  ![7.1](images/7.1.png)
 
--   Restart bind9 dengan perintah `service bind9 restart`
+- Restart bind9 dengan perintah `service bind9 restart`
 
 **Loguetown**
 
--   Lakukan ping domain `general.mecha.franky.c07.com` dan alias `www.general.mecha.franky.c07.com`
+- Lakukan ping domain `general.mecha.franky.c07.com` dan alias `www.general.mecha.franky.c07.com`
 
-    ![7.2](images/7.2.png)
+  ![7.2](images/7.2.png)
 
 ## Soal 8
 
 ```
-
+Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver www.franky.yyy.com. Pertama, luffy membutuhkan webserver dengan DocumentRoot pada /var/www/franky.yyy.com.
 ```
 
 ### Jawaban
+
+**EniesLobby**
+
+- Edit file `/etc/bind/kaizoku/franky.c07.com` seperti pada gambar berikut:
+
+![8.1](images/8.1-EniesLobby.png)
+
+- Restart bind9 dengan perintah
+
+```
+service bind9 restart
+```
+
+**Skypie**
+
+- Pertama - tama, update library dari ubuntu dengan perintah `apt-get update`.
+
+- Install `apache2 dan librarynya` dengan memasukkan perintah `apt-get install apache2 -y` dan `apt-get install libapache2-mod-php7.0 -y`.
+
+- Jalankan apache yang telah dipasang dengan memasukkan perintah `service apache2 start`.
+
+- Install `php` dengan memasukkan perintah `apt-get install php -y`.
+
+- Install tools `wget` dengan memasukkan perintah `apt-get install wget -y`.
+
+- Install tools `unzip` dengan memasukkan perintah `apt-get install unzip -y`.
+
+- Setelah semua tools sudah berhasil dipasang, download terlebih dahulu file library web yang telah disediakan dengan perintah :
+
+```
+wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/franky.zip
+```
+
+- Copy konfigurasi 000-default web server yang akan digunakan sebagai template konfigurasi web server franky.c07.com dengan perintah :
+
+```
+cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/franky.c07.com.conf
+```
+
+- Edit file `/etc/apache2/sites-available/franky.c07.com.conf` seperti pada gambar berikut :
+
+  ![8.2](images/8.2-Skypie.png)
+
+- Buat folder `franky.c07.com` di direktori `/var/www/` dengan perintah :
+
+```
+mkdir /var/www/franky.c07.com
+```
+
+- Unzip file library web yang sebelumnya telah di download ke folder yang telah dibuat dengan perintah :
+
+```
+unzip -j franky.zip -d /var/www/franky.c07.com
+```
+
+- Jalankan konfigurasi website yang telah dibuat dengan menjalankan perintah :
+
+```
+cd /etc/apache2/sites-available/
+a2ensite franky.c07.com.conf
+```
+
+- Restart service apache dengan perintah :
+
+```
+service apache2 restart
+```
+
+**LogueTown**
+
+- Pertama - tama, update library dari ubuntu dengan perintah `apt-get update`.
+
+- Edit file `/etc/resolv.conf` menjadi seperti gambar berikut :
+  ![8.3](images/8.3-LogueTown.PNG)
+
+- Install `lynx` dengan memasukkan perintah `apt-get installlynx -y`.
+
+- Edit file `/etc/resolv.conf` menjadi seperti gambar berikut :
+  ![8.4](images/8.4-LogueTown.PNG)
+
+- Masukkan perintah `lynx franky.c07.com` atau `lynx www.franky.c07.com`, hasilnya :
+  ![8.5](images/8.5-LogueTown.PNG)
 
 ## Soal 9
 
@@ -203,52 +285,52 @@ Setelah itu, pada subdomain `www.super.franky.yyy.com`, Luffy membutuhkan penyim
 
 ### Jawaban
 
--   Ketikkan `cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/super.franky.c07.com.conf` untuk meng-copy isi dari `000-default.conf` kedalam `super.franky.c07.com.conf`
+- Ketikkan `cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/super.franky.c07.com.conf` untuk meng-copy isi dari `000-default.conf` kedalam `super.franky.c07.com.conf`
 
--   Edit file `super.franky.c07.com.conf` seperti pada gambar berikut :
+- Edit file `super.franky.c07.com.conf` seperti pada gambar berikut :
 
-    ![10.1](images/10.1.png)
+  ![10.1](images/10.1.png)
 
--   Aktifkan konfigurasi `super.franky.c07.com`.
+- Aktifkan konfigurasi `super.franky.c07.com`.
 
-    ```
-    a2ensite super.franky.c07.com
-    ```
+  ```
+  a2ensite super.franky.c07.com
+  ```
 
--   Restart apache.
+- Restart apache.
 
-    ```
-    service apache2 restart
-    ```
+  ```
+  service apache2 restart
+  ```
 
--   Download file zip yang sudah disediakan pada soal dengan menggunakan command
+- Download file zip yang sudah disediakan pada soal dengan menggunakan command
 
-    ```
-    wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/super.franky.zip
-    ```
+  ```
+  wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/super.franky.zip
+  ```
 
--   Kemudian unzip file yang telah didownload dan letakkan pada directory `/var/www/`. Setelah itu rename file menjadi `super.franky.c07.com` dengan command berikut :
+- Kemudian unzip file yang telah didownload dan letakkan pada directory `/var/www/`. Setelah itu rename file menjadi `super.franky.c07.com` dengan command berikut :
 
-    ```
-    unzip super.franky.zip -d /var/www/
-    mv /var/www/super.franky /var/www/super.franky.c07.com
-    ```
+  ```
+  unzip super.franky.zip -d /var/www/
+  mv /var/www/super.franky /var/www/super.franky.c07.com
+  ```
 
--   Kemudian buka direktory tempat kita meletakkan file yang telah di-unzip, maka akan muncul seperti pada gambar berikut :
+- Kemudian buka direktory tempat kita meletakkan file yang telah di-unzip, maka akan muncul seperti pada gambar berikut :
 
-    ![10.2](images/10.2.png)
+  ![10.2](images/10.2.png)
 
 **Loguetown**
 
--   Buka `super.franky.c07.com` dengan command berikut :
+- Buka `super.franky.c07.com` dengan command berikut :
 
-    ```
-    lynx super.franky.c07.com
-    ```
+  ```
+  lynx super.franky.c07.com
+  ```
 
--   Setelah itu maka akan muncul seperti pada gambar berikut :
+- Setelah itu maka akan muncul seperti pada gambar berikut :
 
-    ![10.3](images/10.3.png)
+  ![10.3](images/10.3.png)
 
 ## Soal 11
 
@@ -260,27 +342,27 @@ Akan tetapi, pada folder `/public`, Luffy ingin hanya dapat melakukan directory 
 
 **Skypie**
 
--   Edit file `/etc/apache2/sites-available/super.franky.c07.com.conf` seperti pada gambar berikut :
+- Edit file `/etc/apache2/sites-available/super.franky.c07.com.conf` seperti pada gambar berikut :
 
-    ![10.4](images/10.4.png)
+  ![10.4](images/10.4.png)
 
--   Restart apache.
+- Restart apache.
 
-    ```
-    service apache2 restart
-    ```
+  ```
+  service apache2 restart
+  ```
 
 **Loguetown**
 
--   Buka `super.franky.c07.com/public` dengan command berikut :
+- Buka `super.franky.c07.com/public` dengan command berikut :
 
-    ```
-    lynx super.franky.c07.com/public
-    ```
+  ```
+  lynx super.franky.c07.com/public
+  ```
 
--   Setelah itu maka akan muncul seperti pada gambar berikut :
+- Setelah itu maka akan muncul seperti pada gambar berikut :
 
-    ![10.5](images/10.5.png)
+  ![10.5](images/10.5.png)
 
 ## Soal 12
 
