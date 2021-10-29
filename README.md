@@ -191,13 +191,13 @@ Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pert
 
 - Edit file `/etc/bind/kaizoku/franky.c07.com` seperti pada gambar berikut:
 
-![8.1](images/8.1-EniesLobby.png)
+  ![8.1](images/8.1-EniesLobby.png)
 
 - Restart bind9 dengan perintah
 
-```
-service bind9 restart
-```
+  ```
+  service bind9 restart
+  ```
 
 **Skypie**
 
@@ -215,15 +215,15 @@ service bind9 restart
 
 - Setelah semua tools sudah berhasil dipasang, download terlebih dahulu file library web yang telah disediakan dengan perintah :
 
-```
-wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/franky.zip
-```
+  ```
+  wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/franky.zip
+  ```
 
 - Copy konfigurasi 000-default web server yang akan digunakan sebagai template konfigurasi web server franky.c07.com dengan perintah :
 
-```
-cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/franky.c07.com.conf
-```
+  ```
+  cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/franky.c07.com.conf
+  ```
 
 - Edit file `/etc/apache2/sites-available/franky.c07.com.conf` seperti pada gambar berikut :
 
@@ -231,51 +231,94 @@ cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/fr
 
 - Buat folder `franky.c07.com` di direktori `/var/www/` dengan perintah :
 
-```
-mkdir /var/www/franky.c07.com
-```
+  ```
+  mkdir /var/www/franky.c07.com
+  ```
 
 - Unzip file library web yang sebelumnya telah di download ke folder yang telah dibuat dengan perintah :
 
-```
-unzip -j franky.zip -d /var/www/franky.c07.com
-```
+  ```
+  unzip -j franky.zip -d /var/www/franky.c07.com
+  ```
 
 - Jalankan konfigurasi website yang telah dibuat dengan menjalankan perintah :
 
-```
-cd /etc/apache2/sites-available/
-a2ensite franky.c07.com.conf
-```
+  ```
+  cd /etc/apache2/sites-available/
+  a2ensite franky.c07.com.conf
+  ```
 
 - Restart service apache dengan perintah :
 
-```
-service apache2 restart
-```
+  ```
+  service apache2 restart
+  ```
 
-**LogueTown**
+**Loguetown**
 
 - Pertama - tama, update library dari ubuntu dengan perintah `apt-get update`.
 
 - Edit file `/etc/resolv.conf` menjadi seperti gambar berikut :
+
   ![8.3](images/8.3-LogueTown.PNG)
 
 - Install `lynx` dengan memasukkan perintah `apt-get installlynx -y`.
 
 - Edit file `/etc/resolv.conf` menjadi seperti gambar berikut :
+
   ![8.4](images/8.4-LogueTown.PNG)
 
 - Masukkan perintah `lynx franky.c07.com` atau `lynx www.franky.c07.com`, hasilnya :
+
   ![8.5](images/8.5-LogueTown.PNG)
 
 ## Soal 9
 
 ```
-
+Setelah itu, Luffy juga membutuhkan agar url www.franky.yyy.com/index.php/home dapat menjadi menjadi www.franky.yyy.com/home.
 ```
 
 ### Jawaban
+
+**Skypie**
+
+- Aktifkan fitur konfigurasi modul pada service `apache2` dengan menjalankan perintah :
+
+  ```
+  a2enmod rewrite
+  ```
+
+- Restart service apache dengan perintah :
+
+  ```
+  service apache2 restart
+  ```
+
+- Edit file `/var/www/franky.c07.com/.htaccess` menjadi seperti gambar berikut :
+
+  ![9.1](images/9.1-Skypie.PNG)
+
+- Edit file `/etc/apache2/sites-available/franky.c07.com.conf` menjadi seperti gambar berikut :
+
+  ![9.2](images/9.2-Skypie.PNG)
+
+- Restart service apache dengan perintah :
+
+  ```
+  service apache2 restart
+  ```
+
+**Loguetown**
+
+- Buka alamat `www.franky.c07.com/home` dengan memasukkan perintah :
+
+  ```
+  lynx www.franky.c07.com/home
+  ```
+
+- Maka akan muncul tampilan halaman `www.franky.c07.com/home` seperti gambar berikut :
+
+  ![9.3](images/9.3-LogueTown.PNG)
 
 ## Soal 10
 
@@ -367,34 +410,203 @@ Akan tetapi, pada folder `/public`, Luffy ingin hanya dapat melakukan directory 
 ## Soal 12
 
 ```
-
+Tidak hanya itu, Luffy juga menyiapkan error file 404.html pada folder /error untuk mengganti error kode pada apache .
 ```
 
 ### Jawaban
+
+**Skypie**
+
+- Edit file `/etc/apache2/sites-available/super.franky.c07.com.conf` menjadi seperti gambar berikut :
+
+  ![12.1](images/12.1-Skypie.PNG)
+
+- Restart service apache dengan perintah :
+
+  ```
+  service apache2 restart
+  ```
+
+**Loguetown**
+
+- Lakukan testing dengan memasukkan perintah :
+
+  ```
+  lynx super.franky.c07.com/publiccccccc
+  ```
+
+- Maka akan muncul tampilan seperti berikut :
+
+  ![12.2](images/12.2-LogueTown.PNG)
 
 ## Soal 13
 
 ```
-
+Luffy juga meminta Nami untuk dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset www.super.franky.yyy.com/public/js menjadi www.super.franky.yyy.com/js.
 ```
 
 ### Jawaban
+
+**Skypie**
+
+- Edit file `/etc/apache2/sites-available/super.franky.c07.com.conf` menjadi seperti pada gambar berikut :
+
+  ![13.1](images/13.1-Skypie.PNG)
+
+- Restart service apache dengan perintah :
+
+  ```
+  service apache2 restart
+  ```
+
+**Loguetown**
+
+- Lakukan testing dengan memasukkan perintah :
+
+  ```
+  lynx www.super.franky.c07.com/js
+  ```
+
+- Maka akan muncul tampilan seperti berikut :
+
+  ![13.2](images/13.2-LogueTown.PNG)
 
 ## Soal 14
 
 ```
-
+Dan Luffy meminta untuk web www.general.mecha.franky.yyy.com hanya bisa diakses dengan port 15000 dan port 15500
 ```
 
 ### Jawaban
+
+**Skypie**
+
+- Download terlebih dahulu file library web yang telah disediakan dengan perintah :
+
+  ```
+  wget https://raw.githubusercontent.com/FeinardSlim/Praktikum-Modul-2-Jarkom/main/general.mecha.franky.zip
+  ```
+
+- Edit file `/etc/apache2/ports.conf`menjadi seperti gambar berikut :
+
+  ![14.1](images/14.1-Skypie.PNG)
+
+- Buat file `/etc/apache2/sites-available/general.mecha.franky.c07.com.conf` dengan memanfaatkan template dari `/etc/apache2/sites-available/000-default.conf`.
+
+- Kemudian edit file `/etc/apache2/sites-available/general.mecha.franky.c07.com.conf` seperti pada gambar berikut :
+
+  ![14.2](images/14.2-Skypie.PNG)
+
+- Buat folder `general.mecha.franky.c07.com` di direktori `/var/www/` dengan perintah :
+
+  ```
+  mkdir /var/www/general.mecha.franky.c07.com
+  ```
+
+- Unzip file library web yang sebelumnya telah di download ke folder yang telah dibuat dengan perintah :
+
+  ```
+  unzip -j general.mecha.franky.zip -d /var/www/general.mecha.franky.c07.com
+  ```
+
+- Jalankan konfigurasi website yang telah dibuat dengan menjalankan perintah :
+
+  ```
+  cd /etc/apache2/sites-available/
+  a2ensite franky.c07.com.conf
+  ```
+
+- Restart service apache dengan perintah :
+
+  ```
+  service apache2 restart
+  ```
+
+- Kembali ke directory root dengan memasukkan perintah :
+
+  ```
+  cd
+  ```
+
+- Hapus file .zip yang telah di download sebelumnya dengan memasukkan perintah :
+
+  ```
+  rm -rf general.mecha.franky.zip
+  ```
+
+**Loguetown**
+
+- Untuk menguji keberhasilan akses pada port 15000, masukkan perintah :
+
+  ```
+  lynx www.general.mecha.franky.c07.com:15000
+  ```
+
+- Maka akan muncul tampilan seperti pada gambar berikut :
+
+  ![14.3](images/14.3-LogueTown.PNG)
+
+- Sedangkan ntuk menguji keberhasilan akses pada port 15500, masukkan perintah :
+
+  ```
+  lynx www.general.mecha.franky.c07.com:15500
+  ```
+
+- Maka akan muncul tampilan seperti pada gambar berikut :
+
+  ![14.4](images/14.4-LogueTown.PNG)
 
 ## Soal 15
 
 ```
-
+dengan autentikasi username luffy dan password onepiece dan file di /var/www/general.mecha.franky.yyy
 ```
 
 ### Jawaban
+
+**Skypie**
+
+- Edit file `/etc/apache2/sites-available/general.mecha.franky.c07.com.conf` menjadi seperti gambar berikut :
+
+  ![15.1](images/15.1-Skypie.PNG)
+
+- Buat file autentikasi yang diperlukan, sesuai dengan permintaan pada soal, dengan menggunakan perintah :
+
+  ```
+  htpasswd -cb /etc/apache2/.htpasswd luffy onepiece
+  ```
+
+- Restart service apache dengan perintah :
+
+  ```
+  service apache2 restart
+  ```
+
+**LogueTown**
+
+- Untuk menguji konfigurasi yang telah dilakukan, masukkan perintah :
+
+  ```
+  lynx general.mecha.franky.c07.com:15000
+  ```
+
+  Atau,
+
+  ```
+  lynx general.mecha.franky.c07.com:15500
+  ```
+
+- Setelah halaman berhasil diakses, tunggu sejenak, maka akan muncul tampilan halaman seperti pada gambar. Di halaman ini, masukkan autentikasi username yang sebelumnya telah ditetapkan (luffy).
+
+  ![15.2](images/15.2-LogueTown.PNG)
+
+- Setelah itu, masukkan autentikasi password yang sebelumnya telah ditetapkan (onepiece).
+
+  ![15.3](images/15.3-LogueTown.PNG)
+
+- Jika autentikasi sudah benar, maka akan muncul tampilan seperti pada gambar :
+
+  ![15.4](images/15.4-LogueTown.PNG)
 
 ## Soal 16
 
