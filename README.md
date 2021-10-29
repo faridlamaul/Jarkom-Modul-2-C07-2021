@@ -57,8 +57,29 @@ Kemudian untuk mengecek apakah client dapat terkoneksi ke internet, ketikkan `pi
 ## Soal 2
 
 ```
-
+Luffy ingin menghubungi Franky yang berada di EniesLobby dengan denden mushi. Kalian diminta Luffy untuk membuat website utama dengan mengakses franky.yyy.com dengan alias www.franky.yyy.com pada folder kaizoku
 ```
+
+### Jawaban
+
+**EniesLobby**
+
+- Install bind9 menggunakan command `apt-get update` dan `apt-get install bind9 -y`
+- Ubah isi file `/etc/bind/named.conf.local` menjadi sebagai berikut.
+![2](https://user-images.githubusercontent.com/77373958/139461956-fbf8dcd3-865e-4f7a-9340-6c85ca9eed84.PNG)
+
+- Buat dir baru bernama kaizoku dengan cara `mkdir /etc/bind/kaizoku`
+- Jalankan command `cp /etc/bind/db.local /etc/bind/kaizoku/franky.c07.com`
+- Ubah isi file `/etc/bind/kaizoku/franky.c07.com` menjadi berikut.
+![7](https://user-images.githubusercontent.com/77373958/139462006-610e2822-22d9-4106-b090-0f3195b950c5.PNG)
+
+- Restart bind9 dengan cara `service bind9 restart`
+
+**Loguetown**
+
+- Ubah isi file `/etc/resolv.conf` menjadi `nameserver 192.187.2.2`
+- Jalankan ping `franky.c07.com`, akan berjalan seperti berikut.
+![5](https://user-images.githubusercontent.com/77373958/139462043-fc0b9366-da7c-4203-b90f-52fbea5dea08.PNG)
 
 ### Jawaban
 
